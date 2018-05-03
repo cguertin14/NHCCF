@@ -4,7 +4,8 @@
   "description": "Node HTML CLI Code Formatter",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "babel-node cli/app.js",
+    "nodemon": "nodemon cli/app.js --exec babel-node"
   },
   "author": "Charles Guertin",
   "license": "ISC",
