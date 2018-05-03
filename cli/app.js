@@ -1,25 +1,22 @@
-import yargs from 'yargs';
-import keywords from './keywords.json';
+const keywords = require('./keywords.json');
+const FileGenerator = require('./utils/fileGenerator');
 
-(() => {    
-    const argv = yargs
-        .command('color', 'Add color to keywords in specified file')
-        .command('stats', 'Generate a statistics file concerning the specified file')
-        .help()
-        .argv;    
-    
-    let command = process.argv;
-    console.log('Command: ', command);
-    console.log('Yargs: ', argv);    
-    
-    
-    switch (command) {
-        case 'color': {
-            break;
-        }
-        case 'stats': {
-            break;
-        }
-        default: console.log('Command not recognized'); break;
-    }
+(() => {
+    const command  = process.argv.slice(2),
+          hasColor = command.includes('-color') || command.includes('/color'),
+          hasStats = command.includes('-stats') || command.includes('/stats'),
+          files    = command.filter(argv => argv.match(/^(?!.*(stats|color)).*$/i));
+
+    // For debugging purposes.
+    console.log('Args: ', command);
+    console.log('Files: ', files);
+
+    if (hasColor && hasStats)
+        new FileGenerator(files).buildHtml().buildStats();
+    else if (hasStats && !hasColor)
+        new FileGenerator(files).buildStats();
+    else if (!hasStats && hasColor)
+        new FileGenerator(files).buildHtml();
+    else if (!hasStats && !hasColor)
+        throw new Error('You must provide at least one argument.')
 })();

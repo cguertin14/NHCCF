@@ -4,8 +4,9 @@
   "description": "Node HTML CLI Code Formatter",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node cli/app.js",
-    "nodemon": "nodemon cli/app.js --exec babel-node"
+    "start": "node cli/app.js",
+    "nodemon": "nodemon cli/app.js -color -stats a.js b.js",
+    "debug": "node --nolazy --inspect-brk=9229 cli/app.js -color -stats a.js b.js"
   },
   "author": "Charles Guertin",
   "license": "ISC",
