@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node cli/app.js",
-    "nodemon": "nodemon cli/app.js -color -stats a.js b.js",
+    "nodemon": "nodemon cli/app.js -color a.js b.js",
     "debug": "node --nolazy --inspect-brk=9229 cli/app.js -color -stats a.js b.js"
   },
   "author": "Charles Guertin",
@@ -14,19 +14,9 @@
     "node": "9.11.1"
   },
   "dependencies": {
-    "express": "^4.16.3",
-    "moment": "^2.22.0",
-    "socketio": "^1.0.0",
-    "yargs": "^11.0.0"
+    "lodash": "^4.17.10"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-core": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-register": "^6.26.0",
-    "expect": "^22.4.3",
-    "mocha": "^5.0.5",
     "nodemon": "^1.17.3"
   }
 }

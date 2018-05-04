@@ -1,0 +1,27 @@
+<pre>module.exports = <span style="color:purple">class</span> Rectangle {
+    constructor(hauteur, largeur) {
+        <span style="color:#bab446">this</span>.hauteur = hauteur;
+        <span style="color:#bab446">this</span>.largeur = largeur;
+        <span style="color:#bab446">this</span>.allo = <span style="color:green">"Hey!"</span>;
+    }
+
+    <span style="color:purple">get</span> area() {
+        <span style="color:purple">return</span> <span style="color:#bab446">this</span>.calcArea();
+    }
+
+    <span style="color:purple">set</span> largeur(largeur) {
+        <span style="color:#bab446">this</span>.largeur = largeur;
+    }
+
+    <span style="color:purple">set</span> hauteur(hauteur) {
+        <span style="color:#bab446">this</span>.hauteur = hauteur;
+    }
+
+    calcArea() {
+        <span style="color:purple">return</span> <span style="color:#bab446">this</span>.largeur * <span style="color:#bab446">this</span>.hauteur;
+    }
+}
+
+<span style="color:purple">const</span> carré = <span style="color:purple">new</span> Rectangle(10, 10);
+
+console.log(carré.area);</pre>

@@ -17,6 +17,8 @@
         "extends",
         "finally",
         "for",
+        "from",
+        "get",
         "function",
         "if",
         "import",
@@ -26,10 +28,10 @@
         "new",
         "return",
         "require",
+        "set",
         "static",
         "super",
         "switch",
-        "this",
         "throw",
         "try",
         "typeof",
@@ -38,5 +40,28 @@
         "while",
         "with",
         "yield"
+    ],
+    "classes": [
+        "Promise",
+        "Error",
+        "RegExp",
+        "Array",
+        "this",
+        "exports"
+    ],
+    "others": [
+        "map",
+        "filter",
+        "forEach",
+        "sort",
+        "find",
+        "concat",
+        "splice",
+        "slice",
+        "log",
+        "constructor"
+    ],
+    "symbols": [
+        "=>"
     ]
 }
