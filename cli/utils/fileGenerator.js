@@ -52,7 +52,6 @@ module.exports = class FileGenerator {
             stats.occurences_of.count_per_keyword[keyword] = (content.match(new RegExp(`(?<![a-zA-Z.])${keyword}(?![a-zA-Z])`, 'g')) || []).length;
         });
 
-        //console.log(stats);
         fs.writeFile(path.join(__dirname, `./../${file}_stats.json`), JSON.stringify(stats, undefined, 2), 'utf8', err => {
             if (err) throw err;
             console.log('Stats generated!')
