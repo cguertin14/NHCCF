@@ -5,44 +5,46 @@
         schoolId: 101
     },
     {
-        id: 2,
+        id: 2.22222,
         name: <span style="color:green">'Fred'</span>,
         schoolId: 999
     }
 ];
 
-<span style="color:purple">const</span> getGrades = (schoolId) <span style="color:orange">=></span> {
-    <span style="color:purple">return</span> <span style="color:purple">new</span> <span style="color:#bab446">Promise</span>((resolve, reject) <span style="color:orange">=></span> {
-        resolve(grades.filter(grade <span style="color:orange">=></span> grade.schoolId === schoolId));
+<span style="color:green">// <span style="color:purple">async</span> <span style="color:purple">async</span> <span style="color:purple">async</span></span>
+
+<span style="color:purple">const</span> getGrades = (schoolId) => {
+    <span style="color:purple">return</span> <span style="color:purple">new</span> <span style="color:#bab446">Promise</span>((resolve, reject) => {
+        resolve(grades.filter(grade => grade.schoolId === schoolId));
     });
 }
 
-<span style="color:purple">const</span> getStatusAlt = <span style="color:purple">async</span> (userId) <span style="color:orange">=></span> {
+<span style="color:purple">const</span> getStatusAlt = <span style="color:purple">async</span> (userId) => {
     <span style="color:purple">const</span> user = <span style="color:purple">await</span> getUser(userId);
     <span style="color:purple">const</span> grades = <span style="color:purple">await</span> getGrades(user.schoolId);
 
     <span style="color:purple">let</span> avg = 0;
     <span style="color:purple">if</span> (grades.length > 0) {
-        avg = grades.map(grade <span style="color:orange">=></span> grade.grade).reduce((a, b) <span style="color:orange">=></span> a + b) / grades.length;
+        avg = grades.map(grade => grade.grade).reduce((a, b) => a + b) / grades.length;
     } <span style="color:purple">else</span> {
         console.log(<span style="color:green">'allo'</span>);
     }
     <span style="color:purple">return</span> `${user.name} has a ${avg}% avg <span style="color:purple">in</span> the <span style="color:purple">class</span>.`;
 };
 
-<span style="color:green">// getUser(2).then(user <span style="color:orange">=></span> {</span>
+<span style="color:green">// getUser(2).then(user => {</span>
 <span style="color:green">//     console.log(user);</span>
-<span style="color:green">// }).catch(e <span style="color:orange">=></span> {</span>
+<span style="color:green">// }).catch(e => {</span>
 <span style="color:green">//     console.log(e)</span>
 <span style="color:green">// });</span>
 
-<span style="color:green">// getGrades(101).then(grades <span style="color:orange">=></span> {</span>
+<span style="color:green">// getGrades(101).then(grades => {</span>
 <span style="color:green">//     console.log(grades);</span>
-<span style="color:green">// }).catch(e <span style="color:orange">=></span> {</span>
+<span style="color:green">// }).catch(e => {</span>
 <span style="color:green">//     console.log(e)</span>
 <span style="color:green">// });</span>
 
-<span style="color:green">// getStatus(1).then(status <span style="color:orange">=></span> {</span>
+<span style="color:green">// getStatus(1).then(status => {</span>
 <span style="color:green">//     console.log(status);</span>
 <span style="color:green">// });</span>
 

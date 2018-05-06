@@ -61,7 +61,8 @@
         "log",
         "constructor"
     ],
-    "symbols": [
-        "=>"
+    "bools": [
+        "true",
+        "false"
     ]
 }

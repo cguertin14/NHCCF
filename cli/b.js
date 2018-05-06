@@ -6,7 +6,7 @@ module.exports = class Rectangle {
     }
 
     get area() {
-        return this.calcArea();
+        while(true) return this.calcArea();
     }
 
     set largeur(largeur) {
@@ -14,7 +14,8 @@ module.exports = class Rectangle {
     }
 
     set hauteur(hauteur) {
-        this.hauteur = hauteur;
+        if (1 == false)
+            this.hauteur = hauteur;
     }
 
     calcArea() {
