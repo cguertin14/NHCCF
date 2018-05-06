@@ -36,7 +36,7 @@ module.exports = class FileGenerator {
                    .replace(new RegExp(`(?<!^)(${this.bools.join('|')})`, 'g'), '<span style="color:orange">$1</span>');
     }
 
-    async buildStats(file, content)  {
+    buildStats(file, content)  {
         const keywords = this.keywords.concat(this.others,this.bools,this.classes);
         let stats = {
             occurences_of: {
@@ -53,7 +53,7 @@ module.exports = class FileGenerator {
         });
 
         //console.log(stats);
-        fs.writeFile(path.join(__dirname, `./../${file}_stats.json`), JSON.stringify(stats, undefined, 4), 'utf8', err => {
+        fs.writeFile(path.join(__dirname, `./../${file}_stats.json`), JSON.stringify(stats, undefined, 2), 'utf8', err => {
             if (err) throw err;
             console.log('Stats generated!')
         });
