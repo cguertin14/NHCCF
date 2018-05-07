@@ -11,8 +11,6 @@ const users = [
     }
 ];
 
-// async async async
-
 const getGrades = (schoolId) => {
     return new Promise((resolve, reject) => {
         resolve(grades.filter(grade => grade.schoolId === schoolId));

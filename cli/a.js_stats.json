@@ -1,6 +1,6 @@
 {
   "occurences_of": {
-    "keywords": 20,
+    "keywords": 17,
     "count_per_keyword": {
       "yield": 0,
       "with": 0,
@@ -41,7 +41,7 @@
       "case": 0,
       "break": 0,
       "await": 2,
-      "async": 4,
+      "async": 1,
       "splice": 0,
       "sort": 0,
       "slice": 0,

@@ -29,7 +29,7 @@ module.exports = class FileGenerator {
 
     buildHtml(html)  {
         return html.replace(/((?:'|").*(?:'|"))/g, match => `<span style="color:green">${match}</span>`)
-                   .replace(/(?<![a-zA-Z:])(?:#|\/\/)[^\r\n]*|\/\*[\s\S]*?\*\//ig, match => `<span style="color:green">${match}</span>`)
+                   .replace(/(?<![a-zA-Z:])(?:#|\/\/)[^\r\n]*|\/\*[\s\S]*?\*\//g, match => `<span style="color:green">${match}</span>`)
                    .replace(new RegExp(`(?<![a-zA-Z.])(${this.keywords.join('|')})(?![a-zA-Z])`, 'g'), '<span style="color:purple">$1</span>')
                    .replace(new RegExp(`(?<![a-zA-Z.])(${this.classes.join('|')})(?![a-zA-Z])`, 'g'), '<span style="color:#bab446">$1</span>')
                    .replace(new RegExp(`(?<!^)<(${this.others.join('|')})`, 'g'), '<span style="color:blue">$1</span>')
