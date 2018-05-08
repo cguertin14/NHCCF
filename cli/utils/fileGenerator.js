@@ -27,32 +27,39 @@ module.exports = class FileGenerator {
         });
     }
 
-    buildHtml(html)  {
+    buildHtml(html) {
         return html.replace(/((?:'|").*(?:'|"))/g, match => `<span style="color:green">${match}</span>`)
-                   .replace(/(?<![a-zA-Z:])(?:#|\/\/)[^\r\n]*|\/\*[\s\S]*?\*\//g, match => `<span style="color:green">${match}</span>`)
-                   .replace(new RegExp(`(?<![a-zA-Z.])(${this.keywords.join('|')})(?![a-zA-Z])`, 'g'), '<span style="color:purple">$1</span>')
-                   .replace(new RegExp(`(?<![a-zA-Z.])(${this.classes.join('|')})(?![a-zA-Z])`, 'g'), '<span style="color:#bab446">$1</span>')
-                   .replace(new RegExp(`(?<!^)<(${this.others.join('|')})`, 'g'), '<span style="color:blue">$1</span>')
-                   .replace(new RegExp(`(?<!^)(${this.bools.join('|')})`, 'g'), '<span style="color:orange">$1</span>');
+            .replace(/(?<![a-zA-Z:])(?:#|\/\/)[^\r\n]*|\/\*[\s\S]*?\*\//g, match => `<span style="color:green">${match}</span>`)
+            .replace(new RegExp(`(?<![a-zA-Z.])(${this.keywords.join('|')})(?![a-zA-Z])`, 'g'), '<span style="color:purple">$1</span>')
+            .replace(new RegExp(`(?<![a-zA-Z.])(${this.classes.join('|')})(?![a-zA-Z])`, 'g'), '<span style="color:#bab446">$1</span>')
+            .replace(new RegExp(`(?<!^)<(${this.others.join('|')})`, 'g'), '<span style="color:blue">$1</span>')
+            .replace(new RegExp(`(?<!^)(${this.bools.join('|')})`, 'g'), '<span style="color:orange">$1</span>');
     }
 
-    buildStats(file, content)  {
-        const keywords = this.keywords.concat(this.others,this.bools,this.classes);
-        let stats = {
+    buildStats(file, content) {
+        const keywords = this.keywords.concat(this.others, this.bools, this.classes);
+        this.stats = {
             occurences_of: {
                 keywords: (content.match(new RegExp(`(?<![a-zA-Z.])(${keywords.join('|')})(?![a-zA-Z])`, 'g')) || []).length,
-                count_per_keyword: {}, 
+                count_per_keyword: {},
                 numbers: (content.match(/[+-]?\d+(?:\.\d+)?/g) || []).length
             }
         };
+        this.countKeywords(keywords, content);
+        this.writeStats(file);
+    }
 
+    countKeywords(keywords, content) {
         // Occurences counting -> Regex for each word (loop).
         keywords.forEach(keyword => {
             // Put in occurences at [keyword] -> occurences of keyword in content
-            stats.occurences_of.count_per_keyword[keyword] = (content.match(new RegExp(`(?<![a-zA-Z.])${keyword}(?![a-zA-Z])`, 'g')) || []).length;
+            const count = (content.match(new RegExp(`(?<![a-zA-Z.])${keyword}(?![a-zA-Z])`, 'g')) || []).length;
+            if (count > 0) this.stats.occurences_of.count_per_keyword[keyword] = count;
         });
+    }
 
-        fs.writeFile(path.join(__dirname, `./../${file}_stats.json`), JSON.stringify(stats, undefined, 2), 'utf8', err => {
+    writeStats(file) {
+        fs.writeFile(path.join(__dirname, `./../${file}_stats.json`), JSON.stringify(this.stats, undefined, 2), 'utf8', err => {
             if (err) throw err;
             console.log('Stats generated!')
         });
